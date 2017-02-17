@@ -1,0 +1,15 @@
+{
+  "name": "htmling",
+  "version": "1.0.0",
+  "description": "accepts json - responds w html",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http:"
+  },
+  "author": "nrios",
+  "license": "ISC"
+}
