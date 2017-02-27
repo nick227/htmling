@@ -1,6 +1,11 @@
-HTMLING - prototype for generic content styling. Demo uses webscraping available at: http://htmling.herokuapp.com/
+Demo uses webscraping available at: http://htmling.herokuapp.com/
 
-built off restify-base
+Built off restify-base
 
-run node server.js to start
+## USAGE
+
+1. run npm install
+2. run node server.js
+3. verify port is available
+
 
