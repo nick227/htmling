@@ -21,7 +21,7 @@ function spawnWorker (logger) {
 
   // start listening
   var port =  process.env.PORT || 80;
-  server.listen(port, function () {
+  server.listen(port, '0.0.0.0', function () {
     logger.info('%s listening at %s', server.name, server.url);
   });
 }
@@ -63,9 +63,11 @@ function run (cluster) {
 
   // In production environment, create a cluster
   if (NODE_ENV === 'production' || Boolean(settings.server.cluster) || cluster ) {
+    console.log(" create cluster.....");
     createCluster(logger);
   }
   else {
+    console.log(" spawn worker..");
     spawnWorker(logger);
   }
 
