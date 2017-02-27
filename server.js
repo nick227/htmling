@@ -53,7 +53,6 @@ function createCluster (logger) {
   } 
   // Worker processes
   else {
-    console.log(" spawnWorker !");
     spawnWorker(logger);
   }
 }
@@ -62,7 +61,8 @@ function run (cluster) {
 
   // Set up logging
   var logger = logging.createLogger(settings.logs);
-
+    spawnWorker(logger);
+/*
   // In production environment, create a cluster
   if (NODE_ENV === 'production' || Boolean(settings.server.cluster) || cluster ) {
     console.log(" create cluster.....");
@@ -72,6 +72,7 @@ function run (cluster) {
     console.log(" spawn worker..");
     spawnWorker(logger);
   }
+  */
 
 }
 
