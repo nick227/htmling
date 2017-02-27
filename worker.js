@@ -7,7 +7,7 @@ var routes = require('./routes');
 exports.createServer = createServer;
 var enableCors = true;
 function createServer(logger) {
-
+console.log("creating server -w");
     var config = {
         name: require(path.join(__dirname, 'package')).name
     };
@@ -46,6 +46,10 @@ function createServer(logger) {
             handler(req, res, next);
         });
     };
+    server.get('/', function(req, res, next){
+        res.send("nice");
+        next();
+    });
 
     return server;
 }

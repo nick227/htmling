@@ -30,6 +30,7 @@ function createCluster (logger) {
   
   // Set up cluster and start servers
   if (cluster.isMaster) {
+    console.log(" cluster.isMaster !");
     var numCpus = require('os').cpus().length;
 
     logger.info('Starting master, pid ' + process.pid + ', spawning ' + numCpus + ' workers');
@@ -52,6 +53,7 @@ function createCluster (logger) {
   } 
   // Worker processes
   else {
+    console.log(" spawnWorker !");
     spawnWorker(logger);
   }
 }
