@@ -30,6 +30,11 @@ console.log("creating server -w");
     
     server.use(restify.acceptParser(server.acceptable));
     server.use(restify.bodyParser());
+server.get(/\/?.*/, restify.serveStatic({
+            directory: __dirname+'/public',
+            default: 'index.html',
+            match: /^((?!app.js).)*$/   // we should deny access to the application source
+     }));
 
     server.on('NotFound', function(req, res, next) {
         if (logger) logger.debug('404', 'Request for ' + req.url + ' not found. No route.');
@@ -45,11 +50,11 @@ console.log("creating server -w");
         server.post(route, function(req, res, next) {
             handler(req, res, next);
         });
-    };
+    };/*
     server.get('/', function(req, res, next){
         res.send("nice");
         next();
-    });
+    });*/
 
     return server;
 }
