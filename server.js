@@ -20,7 +20,7 @@ function spawnWorker (logger) {
   var server = worker.createServer(logger);
 
   // start listening
-  var port =  process.env.PORT || 8000;
+  var port =  process.env.PORT || 80;
   server.listen(port, function () {
     logger.info('%s listening at %s', server.name, server.url);
   });
