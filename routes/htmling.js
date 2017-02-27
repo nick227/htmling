@@ -12,7 +12,6 @@ function handler(req, res, next){
 	});
 
 	}catch(e){
-		console.log("e");
 		console.log(e);
 	}
     

@@ -50,11 +50,7 @@ server.get(/\/?.*/, restify.serveStatic({
         server.post(route, function(req, res, next) {
             handler(req, res, next);
         });
-    };/*
-    server.get('/', function(req, res, next){
-        res.send("nice");
-        next();
-    });*/
+    };
 
     return server;
 }
