@@ -1,15 +1,28 @@
 {
-  "name": "htmling",
-  "version": "1.0.0",
-  "description": "accepts json - responds w html",
-  "main": "app.js",
+  "name": "HTMLing",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
   "scripts": {
-    "test": "test"
+    "start": "./node_modules/.bin/forever start --append -o ./forever.log -e ./forever.log server.js",
+    "stop": "./node_modules/.bin/forever stop server.js",
+    "status": "./node_modules/.bin/forever list",
+    "test": "./node_modules/.bin/mocha -R spec test/*-test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "http:"
+  "dependencies": {
+    "bunyan": "~0.21",
+    "forever": "~0.10",
+    "request": "^2.79.0",
+    "restify": "~2.6",
+    "striptags": "^3.0.1",
+    "yaml-config": "~0.3"
   },
-  "author": "nrios",
-  "license": "ISC"
+  "devDependencies": {
+    "mocha": "~1.12",
+    "chai": "~1.7",
+    "supertest": "~0.7"
+  },
+  "engine": {
+    "node": "~0.10"
+  }
 }
