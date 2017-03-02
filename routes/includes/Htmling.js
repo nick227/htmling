@@ -5,7 +5,7 @@ var request = require('request');
 class HTMLing{
 	constructor(template, site, pageData){
 		this.template = new Templates(template, site);
-		this.site = site.trim();
+		this.site = typeof site === 'string' ? site.trim() : '';
 		this.pageData = pageData;
 		this.html = '';
 		return this;

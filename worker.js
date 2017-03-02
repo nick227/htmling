@@ -30,7 +30,7 @@ console.log("creating server -w");
     
     server.use(restify.acceptParser(server.acceptable));
     server.use(restify.bodyParser());
-server.get(/\/?.*/, restify.serveStatic({
+    server.get(/\/?.*/, restify.serveStatic({
             directory: __dirname+'/public',
             default: 'index.html',
             match: /^((?!app.js).)*$/   // we should deny access to the application source

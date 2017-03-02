@@ -11,17 +11,15 @@ var util = require('util')
   , url = 'http://localhost:' + settings.server.port;
 
 
-describe("test routes", function () {
+describe("\n\n================\nROUTE TEST PARTY\n================\n\n", function () {
 
   before(function (done) {
-    
-    var server = require('../server');
-
-    // make sure the server is started
-    setTimeout(function() {
+  //uncomment to start server
+  //var server = require('../server');
+  setTimeout(function() {
       request(url)
           .get('/')
-          .expect(404)
+          .expect(200)
           .end(function (err, res) {
             if (err) {
               if (err.code === 'ECONNREFUSED') return done(new Error('Server is not running.'));
@@ -32,9 +30,11 @@ describe("test routes", function () {
     }, 500);
   });
 
-  it('should return the correct test route (route:  /test)', function (done) {
+  it('should return an /htmling formatted response', function (done) {
     request(url)
-          .get('/test')
+          .post('/htmling')
+          .type('form')
+          .send({'template': 'default', 'blob':'testing, <script>var null;</script><a href="">testing</a> 123'})
           .set('Accept', 'application/json')
           .expect('Content-Type', 'application/json')
           .expect(200)
@@ -42,7 +42,8 @@ describe("test routes", function () {
             if (err) return done(err);
             var resp = res.body;
             resp.should.be.an('object');
-            resp.result.should.equal("test");
+            resp.html.should.be.an('string');
+            resp.script.should.be.an('string');
             return done();
           });
   });

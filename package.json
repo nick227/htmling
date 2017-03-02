@@ -15,9 +15,9 @@
     "yaml-config": "~0.3"
   },
   "devDependencies": {
-    "mocha": "~1.12",
     "chai": "~1.7",
-    "supertest": "~0.7"
+    "mocha": "~1.12",
+    "supertest": "^3.0.0"
   },
   "engine": {
     "node": "~0.10"
