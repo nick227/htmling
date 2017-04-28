@@ -13,7 +13,7 @@ class HTMLing{
 	build(){
 		var self = this;
 		function _build(callback){
-			self.striptags();
+			self.sanity();
 			self.templatize();
 			self.stylize();
 			callback({html:self.html, script:self.template.script});
@@ -41,35 +41,44 @@ class HTMLing{
 		});
 		
 	}
-	striptags(){
+	sanity(){
 
+		var exprs = [];
 		var v = this.pageData.replace(/\s\s+/g, ' ').replace(/\n/g, "");//remove white-space
-		var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;//extract body content
-		var matches = pattern.exec(v);
-		v = matches !== null ? matches[1] : v;
+
 		var pattern = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;//remove all scripts
-		var v = v.replace(pattern, '');
+		v = v.replace(pattern, '');
+
+		var pattern = /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi;//remove all style tags
+		v = v.replace(pattern, ''); 
+
+		pattern = /<select\b[^<]*(?:(?!<\/select>)<[^<]*)*<\/select>/gi;//remove all select tags
+		v = v.replace(pattern, '');
+
 		this.pageData = striptags(v, this.template.keep_tags);//remove tags
 	}
 	templatize(){
 		let counter = 0, prev = 0, end = false, next=Math.min(this.template.charBreak, this.pageData.length);
 		for(let idx=Math.min(this.template.charBreak, this.pageData.length); end===false && this.pageData.length > 0;idx+=this.template.charBreak){
-			if(this.template.colCount > 0 && counter % this.template.colCount === 0){
+			console.log(idx);
+			if(this.template.colCount > 1 && counter % this.template.colCount === 0){
 				if(counter > 0){
+					console.log("a");
 					this.html += '</'+this.template.outerElm.elmType+'>';
 				}
 				if(counter < this.pageData.length / this.template.charBreak){
+					console.log("3n");
 					this.html += '<'+this.template.outerElm.elmType+' class='+this.template.outerElm.className+'>';
 
 				}
 			}
 			next = Math.min(idx, this.pageData.length);
-			//next = this.charCheck(next); todo fix
+			next = this.charCheck(next); // todo fix
 			next = this.tagcheck(next, '<a', '</a>');
 			next = this.tagcheck(next, '<img', '>');
 			this.html += '<'+this.template.innerElm.elmType + ' class="'+this.template.innerElm.className+'">' + this.pageData.substring(prev, next) + '</'+this.template.innerElm.elmType+'>';
 			prev = next;
-			end = idx >= this.pageData.length ? true : false;
+			end = next >= this.pageData.length ? true : false;
 			counter++;
 		}
 		this.html = '<'+this.template.bodyElm.elmType + ' id="'+this.template.bodyElm.idName+'">'+this.html+'</'+this.template.bodyElm.elmType + '>';

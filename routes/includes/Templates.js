@@ -1,8 +1,8 @@
 var templateList = {
 
 	"default":{
-		"charBreak":2000,
-		"keep_tags":['img', 'a'],
+		"charBreak":1115,
+		"keep_tags":['img', 'h1', 'h2', 'h3', 'h5', 'b', 'a', 'code'],
 		"colCount":1,
 		"innerElm":{
 			"elmType":"div",
@@ -10,7 +10,7 @@ var templateList = {
 		},
 		"outerElm":{
 			"elmType":"div",
-			"className":"outer-main"
+			"className":"outer-elm"
 		},
 		"bodyElm":{
 			"elmType":"div",
@@ -20,8 +20,8 @@ var templateList = {
 		"scriptName":"default.js"
 	},
 	"kindle":{
-		"charBreak":1750,
-		"keep_tags":['img'],
+		"charBreak":1500,
+		"keep_tags":['img', 'h1', 'h2', 'h3', 'h5', 'b', 'a', 'code'],
 		"colCount":2,
 		"innerElm":{
 			"elmType":"div",
@@ -29,7 +29,7 @@ var templateList = {
 		},
 		"outerElm":{
 			"elmType":"div",
-			"className":"outer-main"
+			"className":"outer-elm"
 		},
 		"bodyElm":{
 			"elmType":"div",

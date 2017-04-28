@@ -18,7 +18,7 @@ function addControls(){
 	input.setAttribute("value", 0);
 	/***/
 	var totalCount = document.createElement("span");
-	totalCount.innerHTML = '/'+(document.getElementsByClassName('outer-main').length-1);
+	totalCount.innerHTML = '/'+(document.getElementsByClassName('outer-elm').length-1);
 	/***/
 	controlbar.appendChild(previous);
 	controlbar.appendChild(next);
@@ -30,7 +30,7 @@ function addControls(){
 
 }
 function advance(direction){
-	var end = document.getElementsByClassName('outer-main').length;
+	var end = document.getElementsByClassName('outer-elm').length;
 	var currentPosition = parseInt(document.getElementById('nav-position').value);
 	var newPosition = direction === 'next' ? (currentPosition <= end ? currentPosition+1 : end) : (currentPosition > 0 ? currentPosition-1 : 0);
 	if(currentPosition === newPosition || newPosition >= end){return false;}
@@ -40,10 +40,10 @@ function advance(direction){
 
 }
 function show(idx){
-	$('.outer-main:eq('+idx+')').css('display', 'flex');
+	$('.outer-elm:eq('+idx+')').css('display', 'flex');
 }
 function hideAll(){
-	$('.outer-main').css('display', 'none');
+	$('.outer-elm').css('display', 'none');
 }
 function addHandlers(){
 	var nextBtn = document.getElementById('btn-next');
@@ -56,7 +56,7 @@ function addHandlers(){
 	});
 }
 $('.item').css('height', window.innerHeight*.705+'px');
-$('.outer-main').css('height', window.innerHeight*.80+'px');
+$('.outer-elm').css('height', window.innerHeight*.80+'px');
 show(0);
 addControls();
 addHandlers();
